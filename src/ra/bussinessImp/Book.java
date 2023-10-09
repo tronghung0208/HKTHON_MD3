@@ -17,7 +17,7 @@ public class Book implements IBook,Comparable<Book> {
     private int numberOfPages;
     private float importPrice;
     private float exportPrice;
-    private float interest=getInterest();
+    private float interest;
     private boolean bookStatus;
     // 2. Contructor
     public Book() {
@@ -31,7 +31,7 @@ public class Book implements IBook,Comparable<Book> {
         this.numberOfPages = numberOfPages;
         this.importPrice = importPrice;
         this.exportPrice = exportPrice;
-        this.interest = getInterest();
+        this.interest = calculateInterest();
         this.bookStatus = bookStatus;
     }
 
@@ -116,7 +116,7 @@ public class Book implements IBook,Comparable<Book> {
         this.importPrice=Float.parseFloat(sc.nextLine());
         System.out.println("Nhập vào giá bán sách");
         this.exportPrice=Float.parseFloat(sc.nextLine());
-        this.interest=getInterest();
+        this.interest=calculateInterest();
         System.out.println("Nhập vào trạng thái của sách(true/false)");
         this.bookStatus=Boolean.parseBoolean(sc.nextLine());
 
