@@ -134,10 +134,6 @@ public class Book implements IBook,Comparable<Book> {
 
     @Override
     public int compareTo(Book o) {
-            // So sánh sách dựa trên lợi nhuận (interest)
-            // Để sắp xếp giảm dần, chúng ta sẽ sử dụng otherBook.getInterest() - this.getInterest()
-            // để đảm bảo sắp xếp giảm dần.
-            return Float.compare(o.getInterest(), this.getInterest());
-
+        return Float.compare(o.getInterest(), this.getInterest());
     }
 }
