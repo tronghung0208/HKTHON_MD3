@@ -33,19 +33,13 @@ public class BookManagement {
                     sortByBookDescending();
                     break;
                 case 4:
-                    System.out.println("Nhập vào bookId cần xóa");
-                    int bookIdDelete = Integer.parseInt(sc.nextLine());
-                    deleteBook(bookIdDelete);
+                    deleteBook();
                     break;
                 case 5:
-                    System.out.println("Nhập tên cần tìm kiếm");
-                    String bookNameSearch = sc.nextLine();
-                    searchBookByName(bookNameSearch);
+                    searchBookByName();
                     break;
                 case 6:
-                    System.out.println("Nhập vào bookId cần xóa");
-                    int bookIdToChange = Integer.parseInt(sc.nextLine());
-                    changeBookStatusById(bookIdToChange);
+                    changeBookStatusById();
                     break;
                 case 7:
                     System.exit(0);
@@ -86,11 +80,13 @@ public class BookManagement {
     }
 
 
-    public static void deleteBook(int bookIdToDelete) {
+    public static void deleteBook() {
+        System.out.println("Nhập vào bookId cần xóa");
+        int bookIdDelete = Integer.parseInt(sc.nextLine());
         // Tìm vị trí của sách cần xóa trong danh sách
         int indexToDelete = -1;
         for (int i = 0; i < bookList.size(); i++) {
-            if (bookList.get(i).getBookId() == bookIdToDelete) {
+            if (bookList.get(i).getBookId() == bookIdDelete) {
                 indexToDelete = i;
                 break;
             }
@@ -102,32 +98,36 @@ public class BookManagement {
             bookList.remove(indexToDelete);
             System.out.println("Xóa sách thành công!");
         } else {
-            System.out.println("Không tìm thấy sách với mã sách " + bookIdToDelete);
+            System.out.println("Không tìm thấy sách với mã sách " + bookIdDelete);
         }
     }
 
-    public static void searchBookByName(String bookNameToSearch) {
+    public static void searchBookByName() {
+        System.out.println("Nhập tên cần tìm kiếm");
+        String bookNameSearch = sc.nextLine();
         boolean found = false;
         for (Book book : bookList) {
-            if (book.getBookName().equalsIgnoreCase(bookNameToSearch)) {
+            if (book.getBookName().equalsIgnoreCase(bookNameSearch)) {
                 book.displayData();
                 found = true;
             }
         }
 
         if (!found) {
-            System.out.println("Không tìm thấy sách với tên: " + bookNameToSearch);
+            System.out.println("Không tìm thấy sách với tên: " + bookNameSearch);
         }
     }
 
-    public static void changeBookStatusById(int bookIdToChange) {
+    public static void changeBookStatusById() {
+        System.out.println("Nhập vào bookId cần thay đổi trạng thái");
+        int bookIdToChange = Integer.parseInt(sc.nextLine());
         boolean found = false;
         for (Book book : bookList) {
             if (book.getBookId() == bookIdToChange) {
                 book.setBookStatus(!book.isBookStatus());
                 found = true;
                 System.out.println("Đã thay đổi trạng thái sách với mã sách " + bookIdToChange);
-                break; // Dừng vòng lặp sau khi tìm thấy sách cần thay đổi
+                break;
             }
         }
 
